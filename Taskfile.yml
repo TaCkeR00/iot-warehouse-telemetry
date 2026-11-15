@@ -1,0 +1,45 @@
+version: '3'
+
+dotenv: ['.env']
+
+vars:
+  BINARY_SENSOR: sensor
+  BINARY_SERVER: server
+  BUILD_DIR: ./bin
+  SENSOR_PATH: ./cmd/sensor/
+  SERVER_PATH: ./cmd/server/
+
+
+tasks:
+  default:
+    desc: List all available tasks
+    cmds:
+      - go-task --list
+  
+  run-sensor:
+    desc: Run the sensor simulator
+    cmds:
+      - go run {{.SENSOR_PATH}} {{.CLI_ARGS}}
+
+  build-sensor:
+    desc: Build the sensor binary
+    cmds:
+      - go build -o {{.BUILD_DIR}}/{{.BINARY_SENSOR}} {{.SENSOR_PATH}}
+
+  run-server:
+    desc: Run the server
+    cmds:
+      - go run {{.SERVER_PATH}} {{.CLI_ARGS}}
+
+  build-server:
+    desc: Build the server binary
+    cmds:
+      - go build -o {{.BUILD_DIR}}/{{.BINARY_SERVER}} {{.SERVER_PATH}}
+
+  build:
+    desc: Build both binaries
+    deps:
+      - build-sensor
+      - build-server
+   
+
