@@ -6,7 +6,7 @@ A real-time IoT warehouse telemetry backend built with Go. An MQTT sensor simula
 
 ```
 ┌─────────────┐     MQTT     ┌─────────────┐     MySQL    ┌──────────┐
-│   Sensor    │ ───────────▶ │   Server    │ ───────────▶ │ Database │
+│   Sensor    │ ──────────▶ │   Server    │ ──────────▶ │ Database │
 │  Simulator  │              │  (Go API)   │              │  (MySQL) │
 └─────────────┘              └──────┬──────┘              └──────────┘
                                     │
